@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.honghu.service.mapper.AvaryInfoMapper">
+    <select id="searchByCondition" resultType="com.honghu.service.entity.AvaryInfo">
+        select * from avary_info
+        <where>
+            <if test="ring != null and ring!=''">and ring like "%"#{ring}"%"</if>
+            <if test="nickname != null and nickname!=''">and nickname like "%"#{nickname}"%"</if>
+            <if test="location != null and location!=''">and location = #{location}</if>
+            <if test="gender != null and gender!=''">and gender = #{gender}</if>
+            <if test="species != null and species!=''">and species = #{species}</if>
+            <if test="year != null and year!=''">and year(birthday)=#{year}</if>
+            <if test="isDead!=null and isDead.toString()!=''">and is_dead=#{isDead}</if>
+            <if test="isOut!=null and isOut.toString()!=''">and is_out = #{isOut}</if>
+        </where>
+
+    </select>
+
+</mapper>

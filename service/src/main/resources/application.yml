@@ -6,7 +6,7 @@ spring:
     name: service
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/avary?serverTimezone=GMT%2B8
+    url: jdbc:mysql://localhost:3306/avary?serverTimezone=GMT%2B8&tinyInt1isBit=false
     username: root
     password: 1234
   jackson:
@@ -15,5 +15,23 @@ spring:
 
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**/*.xml
+#  global-config:
+#    db-config:
+#      id-type: auto
 
+
+#  用户登录名称 avary-user@1003359445296569.onaliyun.com
+#  登录密码 LmSmoSDjrx3eX|4FO0$dp5YW}uLYuF#p
+#  AccessKey ID LTAI5t5yR9YDjfk9quQs6ciH
+#  AccessKey Secret vSbjOP4Wr4isQqQU9DAnn0kEsmgxIw
+
+aliyun:
+  oss:
+    endpoint: oss-cn-hangzhou.aliyuncs.com
+    accesskeyid: LTAI5t5yR9YDjfk9quQs6ciH
+    accesskeysecret: vSbjOP4Wr4isQqQU9DAnn0kEsmgxIw
+    bucketname: avary
+logging:
+  level:
+    com.honghu.service.mapper: debug
 

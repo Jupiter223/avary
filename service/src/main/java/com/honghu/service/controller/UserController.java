@@ -10,13 +10,10 @@ import com.honghu.service.service.UserService;
 import com.honghu.service.utils.MD5;
 import com.honghu.service.vo.RegisterVo;
 import com.sun.org.apache.bcel.internal.generic.I2F;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -29,6 +26,7 @@ import javax.validation.Valid;
  * @since 2022-09-01
  */
 @RestController
+@CrossOrigin
 @RequestMapping("/service/user")
 public class UserController {
     @Autowired
@@ -45,8 +43,6 @@ public class UserController {
         }
             return R.ok();
 
-
-
     }
     @PostMapping("login")
     public R login(@Valid @RequestBody RegisterVo loginVo,BindingResult result) {
@@ -60,7 +56,12 @@ public class UserController {
             return R.error().message(BizCodeEnum.LOGINACCT_PASSWORD_EXCEPTION.getMsg());
         }
         return R.ok().data("token", token);
+    }
 
+    @GetMapping("getinfo")
+    public R getInfo(@Param("token")String token){
+User user=userService.getByToken(token);
+return R.ok().data("data",user);
     }
 
     @PostMapping("updatepassword")

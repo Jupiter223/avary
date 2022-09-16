@@ -20,4 +20,6 @@ public interface UserService extends IService<User> {
     String login(RegisterVo loginVo);
 
     Integer updatePasswordByUser(RegisterVo updatevo);
+
+    User getByToken(String token);
 }

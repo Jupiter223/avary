@@ -60,6 +60,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
 
         String token = JwtUtils.getJwtToken(String.valueOf(user.getId()), user.getUsername());
+        user.setToken(token);
+        baseMapper.updateById(user);
 
         return token;
     }
@@ -76,5 +78,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         int i = baseMapper.updateById(user);
 
         return i;
+    }
+
+    @Override
+    public User getByToken(String token) {
+        User user = baseMapper.selectOne(new QueryWrapper<User>().eq("token", token));
+        return user;
     }
 }

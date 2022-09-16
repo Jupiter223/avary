@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.honghu.service.mapper.EggInfoMapper">
+<select id="selectThisYearCount" resultType="java.lang.Integer">
+    select
+        count(*) eggThisYear
+    from egg_info
+    where year(birthday)=year(now()) and parent_id=#{parentId}
+</select>
+    <select id="selectThisYearEggByParentId" resultType="com.honghu.service.entity.EggInfo">
+        select *
+from egg_info
+where parent_id=#{id} and year(birthday)=year(now())
+    </select>
+    <select id="selectByYearByParentId" resultType="com.honghu.service.entity.EggInfo">
+        select *
+        from egg_info
+        where parent_id=#{id} and year(birthday)=#{year}
+    </select>
+</mapper>
