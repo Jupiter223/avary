@@ -95,7 +95,7 @@ public class AvaryInfoController {
         }
     }
 
-    @PostMapping("searchByCondition")
+    @PostMapping("/searchByCondition")
     public R searchByCondition(@RequestBody AvaryVo avaryVo){
 
         if (avaryVo!=null&& !ObjectUtils.isEmpty(avaryVo)){
@@ -107,6 +107,20 @@ public class AvaryInfoController {
         return R.error().message("请输入检索条件");
     }
 
+    @PostMapping("/getCouple")
+    public R getCoupleByCondition(@RequestBody AvaryVo avaryVo){
+
+        if (avaryVo!=null&& !ObjectUtils.isEmpty(avaryVo)){
+            String coupleId = avaryInfoMapper.searchCoupleByCondition(avaryVo);
+            if (coupleId==null|| coupleId.equals("")){
+                return R.error().message("未查到该种对");
+            }
+            return R.ok().data("coupleId",coupleId);
+        }
+
+
+        return R.error().message("请输入检索条件");
+    }
 
 }
 

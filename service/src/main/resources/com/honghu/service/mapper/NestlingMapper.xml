@@ -11,10 +11,18 @@
         select *
         from nestling
         where parent_id=#{id} and year(birthday)=year(now())
+        order by nest,count
     </select>
     <select id="selectByYearByParentId" resultType="com.honghu.service.entity.Nestling">
         select *
         from nestling
         where parent_id=#{id} and year(birthday)=#{year}
+        order by nest,count
+    </select>
+    <select id="updateParentNickname" resultType="boolean">
+        update nestling set parent_nickname=#{nickname} where parent_id=#{id}
+    </select>
+    <select id="updateParentLocation" resultType="boolean">
+        update nestling set parent_location=#{location} where parent_id=#{id}
     </select>
 </mapper>

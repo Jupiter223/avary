@@ -10,10 +10,18 @@
             <if test="gender != null and gender!=''">and gender = #{gender}</if>
             <if test="species != null and species!=''">and species = #{species}</if>
             <if test="year != null and year!=''">and year(birthday)=#{year}</if>
-            <if test="isDead!=null and isDead.toString()!=''">and is_dead=#{isDead}</if>
-            <if test="isOut!=null and isOut.toString()!=''">and is_out = #{isOut}</if>
+            <if test="death!=null and death.toString()!=''">and death=#{death}</if>
+            <if test="outStatus!=null and outStatus.toString()!=''">and out_status = #{outStatus}</if>
         </where>
 
     </select>
 
+    <select id="searchCoupleByCondition" resultType="string">
+        select couple_id from avary_info
+        <where>
+            <if test="ring != null and ring!=''">and ring=#{ring}</if>
+            <if test="nickname != null and nickname!=''">and nickname =#{nickname}</if>
+            <if test="location != null and location!=''">and location = #{location}</if>
+        </where>
+    </select>
 </mapper>

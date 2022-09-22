@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.honghu.service.mapper.StockItemMapper">
+    <select id="getPage" resultType="com.honghu.service.vo.StockVo">
+        SELECT s.id,s.item_id,si.name,si.brand,si.price,si.weight,si.unit,s.stock_number,s.create_date FROM stock s join stock_item si on s.item_id=si.id limit #{fromIndex},#{toIndex}
+    </select>
+
+    <select id="searchByCodition" resultType="com.honghu.service.entity.StockItem">
+        select * from stock_item
+        <where>
+            <if test="brand!= null and brand!=''">and brand like "%"#{brand}"%"</if>
+            <if test="name!= null and name!=''">and name like "%"#{name}"%"</if>
+
+        </where>
+
+    </select>
+
+</mapper>

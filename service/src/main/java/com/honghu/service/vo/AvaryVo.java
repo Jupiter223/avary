@@ -17,9 +17,9 @@ public class AvaryVo {
 
     private String species;
 
-    private Integer isDead;
+    private Integer death;
 
-    private Integer isOut;
+    private Integer outStatus;
 
     private String nickname;
 

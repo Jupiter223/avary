@@ -6,15 +6,26 @@
         count(*) eggThisYear
     from egg_info
     where year(birthday)=year(now()) and parent_id=#{parentId}
+
 </select>
     <select id="selectThisYearEggByParentId" resultType="com.honghu.service.entity.EggInfo">
         select *
 from egg_info
 where parent_id=#{id} and year(birthday)=year(now())
+        order by nest,count
     </select>
     <select id="selectByYearByParentId" resultType="com.honghu.service.entity.EggInfo">
         select *
         from egg_info
         where parent_id=#{id} and year(birthday)=#{year}
+        order by nest,count
     </select>
+    <select id="updateParentNickname" resultType="boolean">
+        update egg_info set parent_nickname=#{nickname} where parent_id=#{id}
+    </select>
+    <select id="updateParentLocation" resultType="boolean">
+        update egg_info set parent_location=#{location} where parent_id=#{id}
+    </select>
+
+
 </mapper>

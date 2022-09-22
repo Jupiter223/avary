@@ -5,6 +5,8 @@ import com.honghu.service.entity.AvaryInfo;
 import com.honghu.service.entity.Card;
 import com.honghu.service.entity.CoupleInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.honghu.service.entity.EggInfo;
+import com.honghu.service.vo.AvaryVo;
 import com.honghu.service.vo.CoupleVo;
 
 import java.util.List;
@@ -28,4 +30,9 @@ public interface CoupleInfoService extends IService<CoupleInfo> {
     CoupleInfo getOneById(String id);
 
     List<CoupleVo> getAll();
-}
+
+    boolean removeAllById(String id);
+
+    EggInfo getCount(String id);}
+
+

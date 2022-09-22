@@ -19,4 +19,6 @@ public interface NestlingMapper extends BaseMapper<Nestling> {
     List<Nestling> selectThisYearEggByParentId(String id);
     List<Nestling> selectByYearByParentId(String id,String year);
 
+    Boolean updateParentNickname(String nickname,String id);
+    Boolean updateParentLocation(String location,String id);
 }

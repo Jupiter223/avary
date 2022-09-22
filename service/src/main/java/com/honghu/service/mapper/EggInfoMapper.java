@@ -17,5 +17,7 @@ public interface EggInfoMapper extends BaseMapper<EggInfo> {
     Integer selectThisYearCount(String parentId);
     List<EggInfo> selectThisYearEggByParentId(String id);
     List<EggInfo> selectByYearByParentId(String id,String year);
+    Boolean updateParentNickname(String nickname,String id);
+    Boolean updateParentLocation(String location,String id);
 
 }

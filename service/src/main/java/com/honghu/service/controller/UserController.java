@@ -13,9 +13,12 @@ import com.sun.org.apache.bcel.internal.generic.I2F;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <p>
@@ -33,9 +36,12 @@ public class UserController {
     private UserService userService;
     @PostMapping("register")
     public R register(@RequestBody @Valid RegisterVo registerVo,BindingResult result){
-        if(result.hasErrors()){
-           return R.error().message(BizCodeEnum.VAILD_EXCEPTION.getMsg());
-        }
+        if (result.hasErrors()) {
+            List<String> errors=new ArrayList<>();
+            for (ObjectError error : result.getAllErrors()) {
+                errors.add(error.getDefaultMessage());
+            }
+            return R.error().message(BizCodeEnum.VAILD_EXCEPTION.getMsg()).data("data",errors);}
         try {
             userService.register(registerVo);
         } catch (UserExistException e) {
@@ -47,8 +53,11 @@ public class UserController {
     @PostMapping("login")
     public R login(@Valid @RequestBody RegisterVo loginVo,BindingResult result) {
         if (result.hasErrors()) {
-            return R.error().message(BizCodeEnum.VAILD_EXCEPTION.getMsg());
-        }
+            List<String> errors=new ArrayList<>();
+            for (ObjectError error : result.getAllErrors()) {
+                errors.add(error.getDefaultMessage());
+            }
+            return R.error().message(BizCodeEnum.VAILD_EXCEPTION.getMsg()).data("data",errors);}
         String token;
         try {
             token = userService.login(loginVo);

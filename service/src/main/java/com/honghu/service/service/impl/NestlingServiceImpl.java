@@ -65,7 +65,7 @@ public class NestlingServiceImpl extends ServiceImpl<NestlingMapper, Nestling> i
     public List<Nestling> getByParentId(String id) {
         if (!StringUtils.isEmpty(id)){
             QueryWrapper<Nestling> wrapper=new QueryWrapper<>();
-            wrapper.eq("parent_id",id).orderByDesc("birthday");
+            wrapper.eq("parent_id",id).orderByAsc("birthday").orderByAsc("nest").orderByAsc("count");
             List<Nestling> infos = baseMapper.selectList(wrapper);
             return infos;
         }
@@ -88,5 +88,18 @@ public class NestlingServiceImpl extends ServiceImpl<NestlingMapper, Nestling> i
             return infos;
         }
         return null;
+    }
+
+    @Override
+    public boolean updateDeath(List<Nestling> nestlings) {
+        boolean update=false;
+        for (Nestling nestling : nestlings) {
+            nestling.setIsDead(1);
+            update = this.update(nestling);
+        }
+
+//TODO
+        //返回值
+        return update;
     }
 }

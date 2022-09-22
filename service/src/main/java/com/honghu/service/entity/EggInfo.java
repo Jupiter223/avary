@@ -12,6 +12,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+
 /**
  * <p>
  * 
@@ -31,6 +34,7 @@ public class EggInfo implements Serializable {
     @TableId(value = "id", type = IdType.ID_WORKER_STR)
     private String id;
 
+    @NotEmpty(message = "必须指定亲鸟")
     private String parentId;
 
     private String parentNickname;
@@ -38,9 +42,9 @@ public class EggInfo implements Serializable {
     private String parentLocation;
 
     private String species;
-
+    @Min(value=1,message = "窝数必须大于等于1")
     private Integer nest;
-
+    @Min(value=1,message = "个数必须大于等于1")
     private Integer count;
 
     private boolean fertilization;

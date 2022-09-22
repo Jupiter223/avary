@@ -2,17 +2,23 @@ package com.honghu.service.controller;
 
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.honghu.service.common.HonghuException;
 import com.honghu.service.common.R;
 import com.honghu.service.entity.AvaryInfo;
 import com.honghu.service.entity.EggInfo;
 import com.honghu.service.entity.Nestling;
+import com.honghu.service.exception.BizCodeEnum;
 import com.honghu.service.service.EggInfoService;
 import com.honghu.service.service.NestlingService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,9 +45,20 @@ public class NestlingController {
     }
 
     @PostMapping("/add")
-    public R add(@RequestBody Nestling nestling) {
-        boolean result = nestlingService.add(nestling);
-        return result ? R.ok() : R.error();
+    public R add(@RequestBody @Valid Nestling nestling, BindingResult result) {
+        boolean add;
+        if (result.hasErrors()) {
+            List<String> errors=new ArrayList<>();
+            for (ObjectError error : result.getAllErrors()) {
+                errors.add(error.getDefaultMessage());
+            }
+            return R.error().message(BizCodeEnum.VAILD_EXCEPTION.getMsg()).data("data",errors);
+        }try{
+            add= nestlingService.add(nestling);
+        }catch (HonghuException e) {
+            return R.error().message(e.getMsg());
+        }
+        return add ? R.ok() : R.error();
 
     }
 
@@ -89,10 +106,33 @@ public class NestlingController {
 
 
     @PostMapping("/update")
-    public R update(@RequestBody Nestling nestling){
-        boolean update = nestlingService.update(nestling);
-        return update?R.ok():R.error();
+    public R update(@RequestBody @Valid Nestling nestling,BindingResult result){
+
+        boolean update;
+        if (result.hasErrors()) {
+            List<String> errors=new ArrayList<>();
+            for (ObjectError error : result.getAllErrors()) {
+                errors.add(error.getDefaultMessage());
+            }
+            return R.error().message(BizCodeEnum.VAILD_EXCEPTION.getMsg()).data("data",errors);
+        }try{
+            update= nestlingService.update(nestling);
+        }catch (HonghuException e) {
+            return R.error().message(e.getMsg());
+        }
+        return update ? R.ok() : R.error();
+
     }
+
+    @PostMapping("/updateDeath")
+    public R updateDeath(@RequestBody List<Nestling> nestlings){
+
+      boolean update=nestlingService.updateDeath(nestlings);
+        return update ? R.ok() : R.error();
+
+    }
+
+
 
 }
 

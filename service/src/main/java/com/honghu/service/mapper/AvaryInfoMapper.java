@@ -17,4 +17,6 @@ import java.util.List;
 public interface AvaryInfoMapper extends BaseMapper<AvaryInfo> {
     List<AvaryInfo> searchByCondition(AvaryVo avaryVo);
 
+    String searchCoupleByCondition(AvaryVo avaryVo);
+
 }

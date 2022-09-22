@@ -41,9 +41,13 @@ public class AvaryInfo implements Serializable {
 
     private String species;
 
-    private boolean isDead;
+    private boolean death;
+    @JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
+    private Date deadDate;
 
-    private boolean isOut;
+    private boolean outStatus;
+    @JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
+    private Date outDate;
 
     private String otherInfo;
 

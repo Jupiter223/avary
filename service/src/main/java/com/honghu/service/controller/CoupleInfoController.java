@@ -8,8 +8,10 @@ import com.honghu.service.common.R;
 import com.honghu.service.entity.AvaryInfo;
 import com.honghu.service.entity.Card;
 import com.honghu.service.entity.CoupleInfo;
+import com.honghu.service.entity.EggInfo;
 import com.honghu.service.service.AvaryInfoService;
 import com.honghu.service.service.CoupleInfoService;
+import com.honghu.service.vo.AvaryVo;
 import com.honghu.service.vo.CoupleVo;
 import com.sun.jersey.core.spi.factory.InjectableProviderFactory;
 import io.swagger.annotations.ApiOperation;
@@ -106,7 +108,7 @@ public class CoupleInfoController {
         @DeleteMapping("{id}")
         public R removeCard (@ApiParam(name = "id", value = "卡ID", required = true)
         @PathVariable String id){
-            boolean flag = coupleInfoService.removeById(id);
+            boolean flag = coupleInfoService.removeAllById(id);
             if (flag) {
                 return R.ok();
             } else {
@@ -119,6 +121,16 @@ public class CoupleInfoController {
             boolean b = coupleInfoService.updateById(coupleInfo);
             return b?R.ok():R.error();
         }
+
+    @GetMapping("/getCount/{id}")
+    public R getCount(@PathVariable String id) {
+EggInfo eggInfo =coupleInfoService.getCount(id);
+
+        return R.ok().data("data",eggInfo);
+
+    }
+
+
 
 
 }

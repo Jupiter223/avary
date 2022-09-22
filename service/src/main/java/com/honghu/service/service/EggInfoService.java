@@ -16,7 +16,7 @@ import java.util.List;
  */
 public interface EggInfoService extends IService<EggInfo> {
 
-    List<EggInfo> getPageListEgg(Page<EggInfo> page);
+//    List<EggInfo> getPageListEgg(Page<EggInfo> page);
 
     boolean add(EggInfo eggInfo);
 
@@ -29,4 +29,15 @@ public interface EggInfoService extends IService<EggInfo> {
     List<EggInfo> getThisYearByParentId(String id);
 
     List<EggInfo> getByYearByParentId(String id, String year);
+
+
+    EggInfo getCount(String id);
+
+
+
+
+
+    List<EggInfo> getPageListEgg(Page<EggInfo> page);
+
+    boolean recordHatch(EggInfo eggInfo);
 }

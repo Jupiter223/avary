@@ -29,4 +29,6 @@ public interface NestlingService extends IService<Nestling> {
     List<Nestling> getThisYearByParentId(String id);
 
     List<Nestling> getByYearByParentId(String id, String year);
+
+    boolean updateDeath(List<Nestling> nestlings);
 }
