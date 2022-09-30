@@ -3,9 +3,11 @@ package com.honghu.service.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.honghu.service.entity.AvaryInfo;
+import com.honghu.service.entity.Calendar;
 import com.honghu.service.entity.EggInfo;
 import com.honghu.service.entity.Nestling;
 import com.honghu.service.mapper.NestlingMapper;
+import com.honghu.service.service.CalendarService;
 import com.honghu.service.service.NestlingService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,9 @@ public class NestlingServiceImpl extends ServiceImpl<NestlingMapper, Nestling> i
     @Autowired
     private NestlingMapper nestlingMapper;
 
+    @Autowired
+    private CalendarService calendarService;
+
     @Override
     public List<Nestling> getPageListEgg(Page<Nestling> page) {
         List<Nestling> records =baseMapper.selectPage(page,null).getRecords();
@@ -37,10 +42,16 @@ public class NestlingServiceImpl extends ServiceImpl<NestlingMapper, Nestling> i
     @Override
     public boolean add(Nestling nestling) {
         boolean b=false;
+        boolean b1=false;
         if(nestling!=null){
             b = this.save(nestling);
+            Calendar calendar=new Calendar();
+            calendar.setDate(nestling.getBirthday());
+            calendar.setType("nestling");
+            calendar.setContent(nestling.getSpeices()+nestling.getParentLocation()+nestling.getParentNickname()+"第"+nestling.getNest()+"窝第"+nestling.getCount()+"个小鸟出壳");
+            b1 = calendarService.save(calendar);
         }
-        return b;
+        return b||b1;
     }
 
     @Override

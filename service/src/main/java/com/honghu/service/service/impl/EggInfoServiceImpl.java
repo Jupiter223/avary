@@ -5,10 +5,12 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.honghu.service.common.HonghuException;
 import com.honghu.service.common.ResultCode;
 import com.honghu.service.entity.AvaryInfo;
+import com.honghu.service.entity.Calendar;
 import com.honghu.service.entity.EggInfo;
 import com.honghu.service.entity.Nestling;
 import com.honghu.service.mapper.EggInfoMapper;
 import com.honghu.service.service.AvaryInfoService;
+import com.honghu.service.service.CalendarService;
 import com.honghu.service.service.EggInfoService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.honghu.service.service.NestlingService;
@@ -37,6 +39,9 @@ public class EggInfoServiceImpl extends ServiceImpl<EggInfoMapper, EggInfo> impl
 
     @Autowired
     private NestlingService nestlingService;
+
+    @Autowired
+    private CalendarService calendarService;
 
     @Override
     public List<EggInfo> getPageListEgg(Page<EggInfo> page) {
@@ -68,10 +73,16 @@ public class EggInfoServiceImpl extends ServiceImpl<EggInfoMapper, EggInfo> impl
     @Override
     public boolean add(EggInfo eggInfo) {
         boolean b=false;
+        boolean b1=false;
         if(eggInfo!=null){
             b = this.save(eggInfo);
+            Calendar calendar=new Calendar();
+            calendar.setDate(eggInfo.getBirthday());
+            calendar.setType("egg");
+            calendar.setContent(eggInfo.getSpecies()+eggInfo.getParentLocation()+eggInfo.getParentNickname()+"第"+eggInfo.getNest()+"窝第"+eggInfo.getCount()+"颗蛋");
+       b1 = calendarService.save(calendar);
         }
-        return b;
+        return (b||b1);
     }
 
     @Override
