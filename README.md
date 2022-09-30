@@ -1,16 +1,16 @@
-![](D:\WorkSpace\avarymanagement\pic\2022-09-30 082358.png)
+![](https://github.com/Jupiter223/avary/blob/main/pic/2022-09-30%20082358.png?raw=true)
 
 ![](D:\WorkSpace\avarymanagement\pic\2022-09-30 082511.png)
 
-![](D:\WorkSpace\avarymanagement\pic\2022-09-30 082559.png)
+![](https://github.com/Jupiter223/avary/blob/main/pic/2022-09-30%20082511.png?raw=true)
 
-![](D:\WorkSpace\avarymanagement\pic\2022-09-30 082629.png)
+![](https://github.com/Jupiter223/avary/blob/main/pic/2022-09-30%20082732.png?raw=true)
 
-![](D:\WorkSpace\avarymanagement\pic\2022-09-30 082732.png)
+![](https://github.com/Jupiter223/avary/blob/main/pic/2022-09-30%20082559.png?raw=true)
 
-![](D:\WorkSpace\avarymanagement\pic\2022-09-30 082917.png)
+![](https://github.com/Jupiter223/avary/blob/main/pic/2022-09-30%20082917.png?raw=true)
 
 ![](D:\WorkSpace\avarymanagement\pic\2022-09-30 083143.png)
 
-![](D:\WorkSpace\avarymanagement\pic\屏幕截图 2022-09-30 083007.png)
+![](https://github.com/Jupiter223/avary/blob/main/pic/2022-09-30%20082629.png?raw=true)
 
