@@ -1,3 +1,9 @@
+数据库设计如下
+
+![](https://github.com/Jupiter223/avary/blob/main/pic/2022-10-03%20122924.png?raw=true)
+
+还需要许多改进，但暂时能满足需求，准备边用边改
+
 ![](https://github.com/Jupiter223/avary/blob/main/pic/2022-09-30%20082358.png?raw=true)
 
 ![](https://github.com/Jupiter223/avary/blob/main/pic/2022-09-30%20082511.png?raw=true)
